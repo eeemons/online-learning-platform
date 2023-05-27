@@ -57,8 +57,8 @@ const Courses = () => {
             </div>
           </Col>
           {coursesData.map((item) => (
-            <Col lg="4" md="6" sm="6">
-              <CourseCard key={item.id} item={item} />
+            <Col lg="4" md="6" sm="6" key={Math.random()}>
+              <CourseCard item={item} />
             </Col>
           ))}
         </Row>

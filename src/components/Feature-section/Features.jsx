@@ -28,7 +28,7 @@ const Features = () => {
       <Container>
         <Row>
           {FeatureData.map((item, index) => (
-            <Col lg="4" md="6" key={index}>
+            <Col lg="4" md="6" key={Math.random()}>
               <div className="single__feature text-center px-4">
                 <h2 className="mb-3">
                   <i className={item.icon}></i>

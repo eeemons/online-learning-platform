@@ -1,20 +1,21 @@
 import React, { useRef } from "react";
 import { Container } from "reactstrap";
+import { Link } from "react-router-dom";
 import "./header.css";
 
 const navLinks = [
   {
     display: "Home",
-    url: "#",
+    url: "/",
   },
   {
     display: "About",
-    url: "#",
+    url: "/about",
   },
 
   {
     display: "Courses",
-    url: "#",
+    url: "/courses",
   },
   {
     display: "Pages",
@@ -22,7 +23,7 @@ const navLinks = [
   },
   {
     display: "Blog",
-    url: "#",
+    url: "/blog",
   },
 ];
 
@@ -45,8 +46,8 @@ const Header = () => {
             <div className="nav__menu" ref={menuRef} onClick={menuToggle}>
               <ul className="nav__list">
                 {navLinks.map((item, index) => (
-                  <li key={index} className="nav__item">
-                    <a href={item.url}>{item.display}</a>
+                  <li key={Math.random()} className="nav__item">
+                    <Link href={item.url}>{item.display}</Link>
                   </li>
                 ))}
               </ul>

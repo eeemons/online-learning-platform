@@ -52,7 +52,7 @@ const FreeCourse = () => {
           </Col>
 
           {freeCourseData.map((item) => (
-            <Col lg="3" md="4" className="mb-4" key={item.id}>
+            <Col lg="3" md="4" className="mb-4" key={Math.random()}>
               <FreeCourseCard item={item} />
             </Col>
           ))}

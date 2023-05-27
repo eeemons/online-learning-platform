@@ -91,7 +91,10 @@ const Footer = () => {
             <h6 className="fw-bold">Explore</h6>
             <ListGroup className="link__list">
               {footerQuickLinks.map((item, index) => (
-                <ListGroupItem key={index} className="border-0 ps-0 link__item">
+                <ListGroupItem
+                  key={Math.random()}
+                  className="border-0 ps-0 link__item"
+                >
                   {" "}
                   <a href={item.url}>{item.display}</a>
                 </ListGroupItem>
