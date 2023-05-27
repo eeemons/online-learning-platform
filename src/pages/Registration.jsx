@@ -1,7 +1,8 @@
+import RegistrationDesign from "../components/Registration/RegistrationDesign";
 const Registration = () => {
   return (
     <div>
-      <h1>Registration page</h1>
+      <RegistrationDesign />
     </div>
   );
 };

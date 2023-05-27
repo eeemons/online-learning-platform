@@ -18,8 +18,8 @@ const navLinks = [
     url: "/courses",
   },
   {
-    display: "Pages",
-    url: "#",
+    display: "Login",
+    url: "/login",
   },
   {
     display: "Blog",
@@ -47,7 +47,7 @@ const Header = () => {
               <ul className="nav__list">
                 {navLinks.map((item, index) => (
                   <li key={Math.random()} className="nav__item">
-                    <Link href={item.url}>{item.display}</Link>
+                    <Link to={item.url}>{item.display}</Link>
                   </li>
                 ))}
               </ul>

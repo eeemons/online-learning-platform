@@ -1,7 +1,9 @@
+import LoginDesign from "../components/Login/LoginDesign";
+
 const Login = () => {
   return (
     <div>
-      <h1>Login page</h1>
+      <LoginDesign />
     </div>
   );
 };
