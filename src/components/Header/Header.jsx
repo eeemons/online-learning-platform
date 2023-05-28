@@ -2,36 +2,53 @@ import React, { useRef } from "react";
 import { Container } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./header.css";
-
-const navLinks = [
-  {
-    display: "Home",
-    url: "/",
-  },
-  {
-    display: "About",
-    url: "/about",
-  },
-
-  {
-    display: "Courses",
-    url: "/courses",
-  },
-  {
-    display: "Login",
-    url: "/login",
-  },
-  {
-    display: "Blog",
-    url: "/blog",
-  },
-];
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [loginStatus, setLoginStatus] = useState(true);
+
+  const navLinks = [
+    {
+      display: "Home",
+      url: "/",
+      status: true,
+    },
+    {
+      display: "About",
+      url: "/about",
+      status: true,
+    },
+
+    {
+      display: "Courses",
+      url: "/courses",
+      status: true,
+    },
+    {
+      display: "Login",
+      url: "/login",
+      status: loginStatus,
+    },
+    {
+      display: "Blog",
+      url: "/blog",
+      status: true,
+    },
+  ];
+
   const menuRef = useRef();
 
-  const menuToggle = () => menuRef.current.classList.toggle("active__menu");
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setLoginStatus(false);
+    }
+  }, []);
 
+  const menuToggle = () => menuRef.current.classList.toggle("active__menu");
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
   return (
     <header className="header">
       <Container>
@@ -45,16 +62,25 @@ const Header = () => {
           <div className="nav d-flex align-items-center gap-5">
             <div className="nav__menu" ref={menuRef} onClick={menuToggle}>
               <ul className="nav__list">
-                {navLinks.map((item, index) => (
-                  <li key={Math.random()} className="nav__item">
-                    <Link to={item.url}>{item.display}</Link>
-                  </li>
-                ))}
+                {navLinks.map((item, index) =>
+                  item.status ? (
+                    <li key={Math.random()} className="nav__item">
+                      <Link to={item.url}>{item.display}</Link>
+                    </li>
+                  ) : (
+                    <span key={Math.random()}></span>
+                  )
+                )}
               </ul>
             </div>
 
             <div className="nav__right">
               <p className="mb-0 d-flex align-items-center gap-2">
+                {localStorage.getItem("token") ? (
+                  <Link onClick={handleLogout}>Logout</Link>
+                ) : (
+                  <></>
+                )}
                 <i className="ri-phone-line"></i> +88 0123456789
               </p>
             </div>

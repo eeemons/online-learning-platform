@@ -1,6 +1,36 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./loginDesign.css";
+import { useState } from "react";
 const LoginDesign = () => {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("kminchelle");
+  const [passsword, setPassword] = useState("0lelplR");
+
+  const postData = (event) => {
+    // Make a POST request
+    event.preventDefault();
+
+    axios({
+      method: "post",
+      url: "https://dummyjson.com/auth/login",
+      data: {
+        username: email,
+        password: passsword,
+      },
+    })
+      .then((response) => {
+        console.log(response.data);
+        localStorage.setItem("token", response.data.token);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error.response.data.message);
+      });
+  };
   return (
     <div className="login-design">
       <div id="login-form-wrap">
@@ -15,8 +45,12 @@ const LoginDesign = () => {
               type="email"
               id="email"
               name="email"
-              placeholder="Email Address"
+              placeholder="Username"
               required=""
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+              value={email}
             />
           </p>
 
@@ -25,13 +59,22 @@ const LoginDesign = () => {
               type="password"
               id="password"
               name="password"
-              placeholder="Enter Password"
+              placeholder="Password"
               required=""
+              value={passsword}
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
             />
           </p>
 
           <p className="login-design__p">
-            <input type="submit" id="login" defaultValue="Login" />
+            <input
+              type="submit"
+              id="login"
+              defaultValue="Login"
+              onClick={postData}
+            />
           </p>
         </form>
 
