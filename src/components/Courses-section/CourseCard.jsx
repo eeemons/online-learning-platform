@@ -1,7 +1,13 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const CourseCard = (props) => {
-  const { imgUrl, title, lesson, students, rating } = props.item;
+  const { imgUrl, title, lesson, students, rating, id } = props.item;
+  const data = {
+    title: title,
+    students: students,
+    rating: rating,
+    id: id,
+  };
 
   return (
     <div className="single__course__item">
@@ -10,7 +16,12 @@ const CourseCard = (props) => {
       </div>
 
       <div className="course__details">
-        <h6 className="course__title mb-4">{title}</h6>
+        <Link
+          to={{ pathname: `/course-detail/${id}`, state: { data } }}
+          className="course__title mb-4"
+        >
+          {title}
+        </Link>
 
         <div className=" d-flex justify-content-between align-items-center">
           <p className="lesson d-flex align-items-center gap-1">

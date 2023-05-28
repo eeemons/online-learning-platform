@@ -1,0 +1,23 @@
+.course-details__container {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.course-details__course-img {
+  width: 100%;
+}
+
+.course-details__about-course {
+  text-align: justify;
+}
+
+@media screen and (min-width: 450px) {
+  .course-details__container {
+    margin: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
